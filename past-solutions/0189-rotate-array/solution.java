@@ -3,14 +3,32 @@ class Solution {
         int n = nums.length;
         k = k % n;
 
-        reverse(nums, 0, n - 1);
-        reverse(nums, 0, k -1);
-        reverse(nums, k, n - 1);
+        int start, end, temp;
 
-    }
-    private void reverse (int[] nums, int start, int end){
-        while (start < end){
-            int temp = nums[start];
+        start = 0;
+        end = n - 1;
+        while(start < end){
+            temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+
+        start = 0;
+        end = k - 1;
+        while(start < end){
+            temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+
+        start = k;
+        end = n - 1;
+        while(start < end){
+            temp = nums[start];
             nums[start] = nums[end];
             nums[end] = temp;
             start++;
