@@ -1,24 +1,25 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int[] arr = {-1, -1};
 
-        for (int i = 0; i < nums.length; i++) {
+        int n = nums.length;
+        int first = -1;
+        int last = -1;
+
+        for (int i = 0; i < n; i++) {
             if (nums[i] == target) {
-                arr[0] = i;
+                first = i;
                 break;
             }
         }
 
-        for (int i = nums.length - 1; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             if (nums[i] == target) {
-                arr[1] = i;
+                last = i;
                 break;
             }
         }
 
-        return arr;
+        return new int[]{first, last};
     }
 }
-
-
 
