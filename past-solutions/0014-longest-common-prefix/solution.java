@@ -12,9 +12,7 @@ class Solution {
             }
             s3=s3+s2.charAt(i);
         }
-            return s3;
+    return s3;
 
-     }
-        
-        
+    }     
 }
