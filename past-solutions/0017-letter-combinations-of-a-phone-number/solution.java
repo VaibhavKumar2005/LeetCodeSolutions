@@ -1,25 +1,38 @@
+import java.util.*;
+
 class Solution {
-    public List<String> letterCombinations(String digits) {
-        List<String> result = new ArrayList<>();
-        if(digits == null || digits.length() == 0){
-            return result;
+
+    void solve(String digits, int index, StringBuilder curr, String[] mapping, List<String> ans){
+
+        if(index == digits.length()){
+            ans.add(curr.toString());
+            return;
         }
 
-        String[] map = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        int val = digits.charAt(index) - '0';
+        String str = mapping[val];
 
-        result.add("");
-
-        for(char digit : digits.toCharArray()){
-            String letters = map[digit - '0'];
-
-            List<String> temp = new ArrayList<>();
-            for (String combination : result) {
-                for (char letter : letters.toCharArray()) {
-                    temp.add(combination + letter);
-                }
-            }
-            result = temp;
+        for(int i = 0; i < str.length(); i++){
+            curr.append(str.charAt(i));
+            solve(digits, index + 1, curr, mapping, ans);
+            curr.deleteCharAt(curr.length() - 1);
         }
-        return result;
+    }
+
+    public List<String> letterCombinations(String digits){
+
+        List<String> ans = new ArrayList<>();
+
+        if(digits.length() == 0)
+            return ans;
+
+        String[] mapping = {
+            "", "", "abc", "def", "ghi",
+            "jkl", "mno", "pqrs", "tuv", "wxyz"
+        };
+
+        solve(digits, 0, new StringBuilder(), mapping, ans);
+
+        return ans;
     }
 }
